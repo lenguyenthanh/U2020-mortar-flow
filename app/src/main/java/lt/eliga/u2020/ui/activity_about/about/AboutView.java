@@ -8,10 +8,11 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import mortar.dagger2support.DaggerService;
 import lt.eliga.u2020.R;
-import lt.eliga.u2020.ui.activity_about.AboutComponent;
 import lt.eliga.u2020.ui.misc.BetterViewAnimator;
+import mortar.dagger2support.DaggerService;
+
+import static mortar.MortarScope.getScope;
 
 public class AboutView extends BetterViewAnimator {
     @InjectView(R.id.textAbout) TextView              aboutText;
@@ -19,7 +20,9 @@ public class AboutView extends BetterViewAnimator {
 
     public AboutView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        DaggerService.<AboutComponent>getDaggerComponent(context).inject(this);
+        getScope(getContext()).<AboutScreen.Component>getService(
+                DaggerService.SERVICE_NAME
+        ).inject(this);
     }
 
     @Override protected void onFinishInflate() {

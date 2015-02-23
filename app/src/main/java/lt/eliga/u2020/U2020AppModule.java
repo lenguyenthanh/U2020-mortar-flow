@@ -4,7 +4,6 @@ import android.app.Application;
 
 import dagger.Module;
 import dagger.Provides;
-import lt.eliga.u2020.ui.ApplicationScope;
 
 @Module
 public final class U2020AppModule {

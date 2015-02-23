@@ -11,8 +11,8 @@ import java.io.IOException;
 
 import dagger.Module;
 import dagger.Provides;
+import lt.eliga.u2020.ApplicationScope;
 import lt.eliga.u2020.data.api.ApiModule;
-import lt.eliga.u2020.ui.ApplicationScope;
 import timber.log.Timber;
 
 import static android.content.Context.MODE_PRIVATE;

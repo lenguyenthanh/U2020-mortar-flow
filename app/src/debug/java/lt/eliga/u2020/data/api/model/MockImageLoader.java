@@ -6,8 +6,8 @@ import android.graphics.BitmapFactory;
 
 import javax.inject.Inject;
 
+import lt.eliga.u2020.ApplicationScope;
 import lt.eliga.u2020.data.api.model.response.Image;
-import lt.eliga.u2020.ui.ApplicationScope;
 
 @ApplicationScope
 public final class MockImageLoader {

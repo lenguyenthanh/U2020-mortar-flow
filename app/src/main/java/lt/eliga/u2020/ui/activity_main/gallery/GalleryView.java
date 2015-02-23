@@ -37,8 +37,6 @@ public class GalleryView extends BetterViewAnimator implements View.OnClickListe
         getScope(getContext()).<GalleryScreen.Component>getService(
                 DaggerService.SERVICE_NAME
         ).inject(this);
-
-//        DaggerService.<ActivityComponent>getDaggerComponent(context).inject(this);
     }
 
     @Override protected void onFinishInflate() {

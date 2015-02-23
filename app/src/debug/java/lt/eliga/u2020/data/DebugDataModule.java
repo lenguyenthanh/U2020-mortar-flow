@@ -18,12 +18,12 @@ import javax.net.ssl.X509TrustManager;
 
 import dagger.Module;
 import dagger.Provides;
+import lt.eliga.u2020.ApplicationScope;
 import retrofit.MockRestAdapter;
 import lt.eliga.u2020.data.api.DebugApiModule;
 import lt.eliga.u2020.data.prefs.BooleanPreference;
 import lt.eliga.u2020.data.prefs.IntPreference;
 import lt.eliga.u2020.data.prefs.StringPreference;
-import lt.eliga.u2020.ui.ApplicationScope;
 import timber.log.Timber;
 
 @Module(includes = { DataModule.class, DebugApiModule.class})

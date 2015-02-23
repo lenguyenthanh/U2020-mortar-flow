@@ -11,11 +11,11 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import javax.inject.Inject;
 
+import lt.eliga.u2020.ApplicationScope;
 import lt.eliga.u2020.data.api.model.MockImageLoader;
 import lt.eliga.u2020.data.api.model.request.Section;
 import lt.eliga.u2020.data.api.model.response.Image;
 import lt.eliga.u2020.data.api.model.response.ImageResponse;
-import lt.eliga.u2020.ui.ApplicationScope;
 import timber.log.Timber;
 
 @ApplicationScope

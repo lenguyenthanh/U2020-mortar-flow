@@ -1,4 +1,4 @@
-package lt.eliga.u2020.ui;
+package lt.eliga.u2020.core;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

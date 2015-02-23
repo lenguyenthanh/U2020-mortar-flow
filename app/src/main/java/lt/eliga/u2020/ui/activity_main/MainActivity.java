@@ -9,17 +9,18 @@ import com.google.gson.Gson;
 import java.util.UUID;
 
 import flow.Backstack;
-import mortar.MortarScope;
-import mortar.bundler.BundleServiceRunner;
-import mortar.dagger2support.DaggerService;
 import lt.eliga.u2020.R;
 import lt.eliga.u2020.U2020Component;
+import lt.eliga.u2020.U2020DataGraph;
 import lt.eliga.u2020.core.navigation_activity.NoParamsActivityScreen;
 import lt.eliga.u2020.core.navigation_screen.flow.FlowBundler;
 import lt.eliga.u2020.core.util.GsonParceler;
-import lt.eliga.u2020.ui.ScopeSingleton;
+import lt.eliga.u2020.core.ScopeSingleton;
 import lt.eliga.u2020.ui._activity_base.U2020Activity;
 import lt.eliga.u2020.ui.activity_main.gallery.GalleryScreen;
+import mortar.MortarScope;
+import mortar.bundler.BundleServiceRunner;
+import mortar.dagger2support.DaggerService;
 
 import static mortar.MortarScope.buildChild;
 import static mortar.dagger2support.DaggerService.createComponent;
@@ -40,7 +41,7 @@ public class MainActivity extends U2020Activity {
     @dagger.Component(
             dependencies = U2020Component.class
     )
-    public interface ActivityComponent {
+    public interface ActivityComponent extends U2020DataGraph {
         void inject(MainActivity activity);
     }
 

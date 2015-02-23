@@ -11,22 +11,23 @@ import com.google.gson.Gson;
 import java.util.UUID;
 
 import flow.Backstack;
-import mortar.MortarScope;
-import mortar.bundler.BundleServiceRunner;
-import mortar.dagger2support.DaggerService;
 import lt.eliga.u2020.R;
 import lt.eliga.u2020.U2020Component;
+import lt.eliga.u2020.U2020DataGraph;
 import lt.eliga.u2020.core.navigation_activity.ActivityScreen;
 import lt.eliga.u2020.core.navigation_screen.flow.FlowBundler;
 import lt.eliga.u2020.core.util.GsonParceler;
+import lt.eliga.u2020.core.ScopeSingleton;
 import lt.eliga.u2020.ui._activity_base.U2020Activity;
 import lt.eliga.u2020.ui.activity_about.about.AboutScreen;
+import mortar.MortarScope;
+import mortar.bundler.BundleServiceRunner;
+import mortar.dagger2support.DaggerService;
 
 import static mortar.MortarScope.buildChild;
 import static mortar.dagger2support.DaggerService.createComponent;
 
 public class AboutActivity extends U2020Activity {
-    private @NonNull String imageId;
 
     private final FlowBundler flowBundler = new FlowBundler(new GsonParceler(new Gson())) {
         @Override protected Backstack getColdStartBackstack(
@@ -37,6 +38,14 @@ public class AboutActivity extends U2020Activity {
         }
     };
     private String scopeName;
+
+    @ScopeSingleton(Component.class)
+    @dagger.Component(
+            dependencies = U2020Component.class
+    )
+    public interface Component extends U2020DataGraph {
+        void inject(AboutActivity activity);
+    }
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,14 +61,14 @@ public class AboutActivity extends U2020Activity {
                 .withService(BundleServiceRunner.SERVICE_NAME, new BundleServiceRunner())
                 .withService(
                         DaggerService.SERVICE_NAME, createComponent(
-                                AboutComponent.class, appComponent
+                                Component.class, appComponent
                         )
                 )
                 .build();
     }
 
     @Override protected void onCreateComponent() {
-        DaggerService.<AboutComponent>getDaggerComponent(this).inject(this);
+        DaggerService.<Component>getDaggerComponent(this).inject(this);
     }
 
     @Override protected String getScopeName() {
@@ -73,7 +82,6 @@ public class AboutActivity extends U2020Activity {
     @Override
     protected void onExtractParams(@NonNull Bundle params) {
         super.onExtractParams(params);
-        imageId = getIntent().getStringExtra(Screen.BF_IMAGE_ID);
     }
 
     @Override protected void onDestroy() {

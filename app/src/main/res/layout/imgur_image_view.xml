@@ -6,4 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="#000000"
+        android:id="@+id/image"/>
+
+
 </lt.eliga.u2020.ui.activity_main.image.ImgurImageView>

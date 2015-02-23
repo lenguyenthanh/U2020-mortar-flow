@@ -23,7 +23,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewDebug;
 
-import lt.eliga.u2020.ui.ActivityHierarchyServer;
+import lt.eliga.u2020.core.ActivityHierarchyServer;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

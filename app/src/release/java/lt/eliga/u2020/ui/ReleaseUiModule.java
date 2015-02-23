@@ -2,6 +2,7 @@ package lt.eliga.u2020.ui;
 
 import dagger.Module;
 import dagger.Provides;
+import lt.eliga.u2020.core.ActivityHierarchyServer;
 
 @Module(includes = UiModule.class)
 public class ReleaseUiModule {
@@ -12,8 +13,7 @@ public class ReleaseUiModule {
     }
 
     @Provides
-    @ApplicationScope
-    ActivityHierarchyServer provideActivityHierarchyServer() {
+    @ApplicationScope ActivityHierarchyServer provideActivityHierarchyServer() {
         return ActivityHierarchyServer.NONE;
     }
 }

@@ -1,5 +1,7 @@
 package lt.eliga.u2020.ui.activity_main.image;
 
+import android.os.Bundle;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,12 +11,13 @@ import flow.HasParent;
 import flow.Layout;
 import flow.Path;
 import lt.eliga.u2020.R;
-import lt.eliga.u2020.core.navigation_activity.ToolbarPresenter;
 import lt.eliga.u2020.core.navigation_screen.mortar.DynamicModules;
 import lt.eliga.u2020.data.api.model.response.Image;
-import lt.eliga.u2020.ui.ScopeSingleton;
-import lt.eliga.u2020.ui.WithComponent;
+import lt.eliga.u2020.core.ScopeSingleton;
+import lt.eliga.u2020.core.WithComponent;
+import lt.eliga.u2020.ui.activity_main.MainActivity;
 import lt.eliga.u2020.ui.activity_main.gallery.GalleryScreen;
+import mortar.ViewPresenter;
 import rx.Observable;
 import rx.Subscription;
 import rx.functions.Action1;
@@ -24,7 +27,7 @@ import timber.log.Timber;
  * Created by eliga on 14/02/15.
  */
 
-@Layout(R.layout.gallery_view_image) @WithComponent(ImageComponent.class)
+@Layout(R.layout.imgur_image_view) @WithComponent(ImageScreen.Component.class)
 public class ImageScreen extends Path implements HasParent, DynamicModules {
 
     private final ImgurImageModule module;
@@ -41,23 +44,32 @@ public class ImageScreen extends Path implements HasParent, DynamicModules {
         return Arrays.<Object>asList(module);
     }
 
-    @ScopeSingleton(ImageComponent.class)
+    @dagger.Component(
+            dependencies = MainActivity.ActivityComponent.class,
+            modules = {ImgurImageModule.class}
+    )
+    @ScopeSingleton(Component.class)
+    public interface Component {
+        void inject(ImgurImageView view);
+    }
+
+    @ScopeSingleton(Component.class)
     public static class Presenter
-            extends lt.eliga.u2020.ui._activity_base.ViewPresenter<ImgurImageView> {
+            extends ViewPresenter<ImgurImageView> {
 
         private final Observable<Image> imageObservable;
-        private final ToolbarPresenter  toolbarPresenter;
         private       Subscription      subscription;
 
         @Inject
-        public Presenter(Observable<Image> imageObservable, ToolbarPresenter toolbarPresenter) {
+        public Presenter(Observable<Image> imageObservable) {
             this.imageObservable = imageObservable;
-            this.toolbarPresenter = toolbarPresenter;
         }
 
+
         @Override
-        protected void onLoad() {
-            super.onLoad();
+        protected void onLoad(Bundle savedInstanceState) {
+            super.onLoad(savedInstanceState);
+            if (!hasView()) return;
             Timber.d("Loading image");
             subscription = imageObservable.
                     subscribe(
@@ -66,7 +78,6 @@ public class ImageScreen extends Path implements HasParent, DynamicModules {
                                 public void call(Image image) {
                                     Timber.d("Image loaded with id %s", image.toString());
                                     getView().bindTo(image);
-                                    toolbarPresenter.setTitle(image.title);
                                 }
                             },
                             new Action1<Throwable>() {
@@ -78,10 +89,10 @@ public class ImageScreen extends Path implements HasParent, DynamicModules {
                     );
         }
 
-        @Override
-        protected void onDestroy() {
-            super.onDestroy();
+        @Override public void dropView(ImgurImageView view) {
             subscription.unsubscribe();
+            super.dropView(view);
+
         }
     }
 }

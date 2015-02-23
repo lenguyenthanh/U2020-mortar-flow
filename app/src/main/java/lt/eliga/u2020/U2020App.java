@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import mortar.MortarScope;
 import mortar.dagger2support.DaggerService;
-import lt.eliga.u2020.ui.ActivityHierarchyServer;
+import lt.eliga.u2020.core.ActivityHierarchyServer;
 import timber.log.Timber;
 
 import static mortar.dagger2support.DaggerService.createComponent;

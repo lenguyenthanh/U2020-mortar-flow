@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import lt.eliga.u2020.ApplicationScope;
 import lt.eliga.u2020.data.api.model.request.Section;
 import lt.eliga.u2020.data.api.model.request.Sort;
 import lt.eliga.u2020.data.api.model.response.Gallery;
 import lt.eliga.u2020.data.api.model.response.Image;
-import lt.eliga.u2020.ui.ApplicationScope;
 import rx.Observable;
 
 @ApplicationScope

@@ -2,8 +2,8 @@ package lt.eliga.u2020.data.api;
 
 import javax.inject.Inject;
 
+import lt.eliga.u2020.ApplicationScope;
 import retrofit.RequestInterceptor;
-import lt.eliga.u2020.ui.ApplicationScope;
 
 @ApplicationScope
 public final class ApiHeaders implements RequestInterceptor {

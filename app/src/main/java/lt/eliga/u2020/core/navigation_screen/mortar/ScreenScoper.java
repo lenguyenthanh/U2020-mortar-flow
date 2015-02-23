@@ -7,7 +7,7 @@ import java.util.List;
 
 import mortar.MortarScope;
 import mortar.dagger2support.DaggerService;
-import lt.eliga.u2020.ui.WithComponent;
+import lt.eliga.u2020.core.WithComponent;
 
 import static mortar.MortarScope.findChild;
 import static mortar.MortarScope.getScope;
@@ -15,8 +15,7 @@ import static mortar.dagger2support.DaggerService.createComponent;
 
 /**
  * Creates {@link mortar.MortarScope}s for screens that may be annotated with {@link
- * WithModuleFactory},
- * {@link WithModule}.
+ * {@link WithComponent}.
  */
 public class ScreenScoper {
 

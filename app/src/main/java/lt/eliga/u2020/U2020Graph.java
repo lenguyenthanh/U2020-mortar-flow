@@ -13,15 +13,9 @@ import lt.eliga.u2020.core.navigation_activity.ToolbarPresenter;
 /**
  * A common interface implemented by both the Release and Debug flavored components.
  */
-public interface U2020Graph {
+public interface U2020Graph extends U2020DataGraph {
     void inject(U2020App app);
-
     AppContainer appContainer();
-    Picasso picasso();
-    ScreenSwitcher screenSwitcher();
     ActivityScreenSwitcher activityScreenSwitcher();
-    ImageService imageService();
-    GalleryDatabase galleryDatabase();
-    GalleryService galleryService();
     ToolbarPresenter toolbarPresenter();
 }

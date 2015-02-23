@@ -2,6 +2,8 @@ package lt.eliga.u2020.ui.activity_main.image;
 
 import android.support.annotation.NonNull;
 
+import javax.inject.Inject;
+
 import dagger.Module;
 import dagger.Provides;
 import lt.eliga.u2020.data.api.ImageService;
@@ -20,7 +22,7 @@ public class ImgurImageModule {
     }
 
     @Provides
-    Observable<Image> provideImageObservable(ImageService imageService) {
+    @Inject Observable<Image> provideImageObservable(ImageService imageService) {
         return imageService.image(imageId).
                 map(new ImageResponseToImage()).
                 subscribeOn(Schedulers.io()).

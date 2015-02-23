@@ -1,4 +1,4 @@
-package lt.eliga.u2020.ui;
+package lt.eliga.u2020.core;
 
 import javax.inject.Scope;
 
